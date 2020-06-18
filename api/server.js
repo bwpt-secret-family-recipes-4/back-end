@@ -17,15 +17,15 @@ server.get('/', (req, res) => {
   res.send(`Server running for BW project!`);
 });
 
-server.use('/api/recipes', recipeRouter);
-server.use('/api/auth', authRouter);
+server.use('/api/recipes', logger, recipeRouter);
+server.use('/api/auth', logger, authRouter);
 
-// Custom middleware Logger
+//custom middleware
 function logger(req, res, next) {
   console.log(`
   {
-      method: ${request.method},
-      url: ${request.url},
+      method: ${req.method},
+      url: ${req.url},
       timestamp: ${new Date().toLocaleString()}
   }
   `);
