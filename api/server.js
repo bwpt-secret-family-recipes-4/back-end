@@ -17,7 +17,7 @@ server.get('/', (req, res) => {
   res.send(`Server running for BW project!`);
 });
 
-server.use('/api/recipes', logger, recipeRouter);
+server.use('/api/recipes', authenticate, logger, recipeRouter);
 server.use('/api/auth', logger, authRouter);
 
 //custom middleware
