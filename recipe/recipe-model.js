@@ -11,11 +11,13 @@ module.exports = {
 function getAllRecipes() {
   return db('recipes as r')
     .select(
+      'r.id',
       'r.title',
       'r.creator',
       'r.ingredients',
       'r.directions',
-      'r.category'
+      'r.category',
+      'r.user_id'
     )
     .join('users as u', 'r.user_id', '=', 'u.id')
     .orderBy('r.user_id');

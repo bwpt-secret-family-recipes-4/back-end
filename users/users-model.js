@@ -15,7 +15,7 @@ function findBy(filter) {
 async function add(user) {
   const [id] = await db('users').insert(user);
 
-  return findById(id);
+  return getUsersById(id);
 }
 
 function findByUsername(username) {
@@ -29,6 +29,7 @@ function getUsersById(id) {
 function getUsersRecipes(id) {
   return db('recipes as r')
     .select(
+      'r.id',
       'r.title',
       'r.creator',
       'r.ingredients',

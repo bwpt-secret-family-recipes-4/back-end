@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 });
 
 // POST new recipe for a user
-router.post('/:id/recipes', validateRecipe, (req, res) => {
+router.post('/:id/user', validateRecipe, (req, res) => {
   const id = req.params.id;
   req.body.user_id = id;
   const recipeData = req.body;
@@ -58,7 +58,7 @@ router.get('/:id', validateRecipeId, (req, res) => {
 });
 
 // GET recipes for a specific user
-router.get('/:id/recipes', validateUserId, (req, res) => {
+router.get('/:id/user', validateUserId, (req, res) => {
   const id = req.params.id;
 
   Users.getUsersRecipes(id)
