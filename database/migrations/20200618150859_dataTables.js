@@ -15,6 +15,15 @@ exports.up = function (knex) {
       tbl.string('ingredients', 1000).notNullable();
       tbl.string('directions', 1000).notNullable();
       tbl.string('category', 30).notNullable().index();
+      // foreign key
+      tbl
+        .integer('user_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('users')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE');
     });
 };
 
