@@ -35,6 +35,6 @@ function getUsersRecipes(id) {
       'r.directions',
       'r.category'
     )
-    .join('users as u', 'r.user_id', '=', 'u.id')
+    .where('r.user_id', id)
     .orderBy('r.user_id', id);
 }
