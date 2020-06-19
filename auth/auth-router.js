@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
   res.send('Hello from auth router!');
 });
 
-// Register
+// POST Register
 router.post('/register', (req, res) => {
   let user = req.body;
   const hash = bcrypt.hashSync(user.password, 10);
@@ -24,7 +24,7 @@ router.post('/register', (req, res) => {
     });
 });
 
-// Login
+// POST Login
 router.post('/login', (req, res) => {
   let { username, password } = req.body;
 
