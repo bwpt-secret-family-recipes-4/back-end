@@ -5,6 +5,7 @@ module.exports = {
   getById,
   insert,
   update,
+  remove,
 };
 
 function getAllRecipes() {
@@ -41,6 +42,24 @@ function update(id, changes) {
     .then((count) => {
       if (count > 0) {
         return getById(id);
+      }
+    });
+}
+
+function remove(id) {
+  let deletedRecipe = {};
+  db('recipes')
+    .where({ id })
+    .first()
+    .then((recipe) => {
+      deletedRecipe = recipe;
+    });
+  return db('recipes')
+    .where('id', id)
+    .del()
+    .then((count) => {
+      if (count > 0) {
+        return deletedRecipe;
       }
     });
 }
