@@ -25,8 +25,9 @@ function getById(id) {
 
 function insert(recipe) {
   return db('recipes')
-    .insert(recipe)
+    .insert(recipe, 'id')
     .then((ids) => {
-      return getById(id[0]);
+      const [id] = ids;
+      return db('recipes').where({ id }).first();
     });
 }
