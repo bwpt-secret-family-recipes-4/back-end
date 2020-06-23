@@ -3,8 +3,17 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const secrets = require('../config/secret');
-
 const Users = require('../users/users-model');
+
+router.get('/', (req, res) => {
+  Users.find()
+    .then((users) => {
+      res.json(users);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+});
 
 // POST register
 router.post('/register', (req, res) => {
@@ -46,7 +55,7 @@ router.post('/login', (req, res) => {
 
 function signToken(user) {
   const payload = {
-    userId: user.id,
+    subject: user.id,
     username: user.username,
   };
 
