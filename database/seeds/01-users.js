@@ -14,11 +14,11 @@ exports.seed = function (knex) {
         { username: 'Doug.Little', password: bcrypt.hashSync('password', 10) },
         {
           username: 'Nasha.Gladney',
-          password: bcrypt.hashSync('password, 10'),
+          password: bcrypt.hashSync('password', 10),
         },
         {
           username: 'Allison.Castaneda',
-          password: bcrypt.hashSync('password, 10'),
+          password: bcrypt.hashSync('password', 10),
         },
       ]);
     });
