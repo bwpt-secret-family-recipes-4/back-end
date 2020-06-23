@@ -20,7 +20,7 @@ module.exports = {
 
   testing: {
     client: 'sqlite3',
-    connection: process.env.DB_ENV,
+    connection: './database/test_fam_recipes.db3',
     useNullAsDefault: true,
     migrations: {
       directory: './database/migrations',
