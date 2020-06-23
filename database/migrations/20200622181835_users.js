@@ -1,10 +1,10 @@
 exports.up = function (knex) {
-  return knex.schema.createTable('users', (tbl) => {
-    tbl.increments();
-    tbl.varchar('name');
-    tbl.varchar('email').unique();
-    tbl.varchar('username', 500).notNullable().unique();
-    tbl.varchar('password', 500).notNullable();
+  return knex.schema.createTable('users', (users) => {
+    users.increments();
+    users.varchar('name');
+    users.varchar('email').unique();
+    users.varchar('username', 500).notNullable().unique();
+    users.varchar('password', 500).notNullable();
   });
 };
 
