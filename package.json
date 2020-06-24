@@ -9,7 +9,10 @@
     "start": "node index.js",
     "rollback": "knex migrate:rollback",
     "latest": "knex migrate:latest",
-    "seed": "knex seed:run"
+    "seed": "knex seed:run",
+    "testingrollback": "knex migrate:rollback --env=testing",
+    "testinglatest": "knex migrate:latest --env=testing",
+    "testingseed": "knex seed:run --env=testing"
   },
   "repository": {
     "type": "git",
