@@ -1,19 +1,20 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-
+const db = require('../database/dbconfig');
 const secrets = require('../config/secret');
 const Users = require('../users/users-model');
 
-router.get('/', (req, res) => {
-  Users.find()
-    .then((users) => {
-      res.json(users);
-    })
-    .catch((error) => {
-      res.send(error);
-    });
-});
+// Used to test List of Users
+// router.get('/', (req, res) => {
+//   Users.find()
+//     .then((users) => {
+//       res.json(users);
+//     })
+//     .catch((error) => {
+//       res.send(error);
+//     });
+// });
 
 // POST register
 router.post('/register', (req, res) => {
@@ -23,7 +24,13 @@ router.post('/register', (req, res) => {
 
   Users.add(user)
     .then((newUser) => {
-      res.status(201).json(newUser);
+      const token = signToken(newUser);
+      res.status(201).json({
+        created_user: newUser,
+        id: newUser.id,
+        token: token,
+        message: 'Successfully created a new user',
+      });
     })
     .catch((err) => {
       res.status(500).json(err);
@@ -41,11 +48,13 @@ router.post('/login', (req, res) => {
         const token = signToken(user);
 
         res.status(200).json({
-          message: `${token}`,
-          user_id: `${user.id}`,
+          username: user.username,
+          id: 'user.id',
+          token: token,
+          message: 'Logged in',
         });
       } else {
-        res.status(401).json({ you: 'shall not pass' });
+        res.status(401).json({ message: 'Invalid credentials' });
       }
     })
     .catch((err) => {
