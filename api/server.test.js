@@ -1,5 +1,5 @@
 const request = require('supertest');
-const server = require('./server.js');
+const server = require('./server');
 
 describe('server.js', () => {
   describe('GET/', () => {
@@ -13,10 +13,10 @@ describe('server.js', () => {
       expect(res.type).toBe('application/json');
     });
 
-    it('should return { api: "server running for BW project!" }', async () => {
+    it('should return { api: "Server running for BW project!" }', async () => {
       const res = await request(server).get('/');
       expect(res.body).toEqual({
-        api: 'server running for BW project!',
+        api: 'Server running for BW project!',
       });
     });
   });

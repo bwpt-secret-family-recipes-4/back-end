@@ -15,12 +15,12 @@ server.use(helmet());
 server.use(express.json());
 
 server.get('/', (req, res) => {
-  res.send({ api: `server running for BW project!` });
+  res.send({ api: `Server running for BW project!` });
 });
 
 server.use('/api/auth', logger, authRouter);
 server.use('/api/recipes', logger, authenticate, recipeRouter);
-server.use('./api/users', userRouter);
+server.use('/api/users', logger, authenticate, userRouter);
 
 //custom middleware
 function logger(req, res, next) {
