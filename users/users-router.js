@@ -14,7 +14,7 @@ router.get('/', restricted, (req, res) => {
 });
 
 router.get('/:id', restricted, (req, res) => {
-  Users.findById(req.params.id)
+  Users.getUsersById(req.params.id)
     .then((user) => {
       res.json(user);
     })
