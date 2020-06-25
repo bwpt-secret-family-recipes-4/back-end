@@ -42,7 +42,7 @@ router.post('/login', (req, res) => {
         res.status(200).json({
           username: `${user.username}`,
           id: `${user.id}`,
-          user_id: `${newUser.id}`,
+          user_id: `${user.id}`,
           token: `${token}`,
           message: 'Logged in',
         });
