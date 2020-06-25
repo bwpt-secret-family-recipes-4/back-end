@@ -9,6 +9,7 @@ exports.up = function (knex) {
     // foreign key
     tbl
       .integer('user_id')
+      .notNullable()
       .unsigned()
       .references('id')
       .inTable('users')
