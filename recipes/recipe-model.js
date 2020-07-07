@@ -27,14 +27,19 @@ function getById(id) {
   return db('recipes').where({ id }).first();
 }
 
-function insert(recipe) {
-  return db('recipes')
-    .insert(recipe, 'id')
-    .then((ids) => {
-      const [id] = ids;
+// function insert(recipe) {
+//   return db('recipes')
+//     .insert(recipe, 'id')
+//     .then((ids) => {
+//       const [id] = ids;
 
-      return db('recipes').where({ id }).first();
-    });
+//       return db('recipes').where({ id }).first();
+//     });
+// }
+
+async function insert(recipe) {
+  const [id] = await db('recipes').insert(recipe, 'id');
+  return db('recipes').where({ id }).first();
 }
 
 function update(id, changes) {

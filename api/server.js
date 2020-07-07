@@ -15,7 +15,7 @@ server.use(helmet());
 server.use(express.json());
 
 server.get('/', (req, res) => {
-  res.send({ api: `Server running for BW project!` });
+  res.send({ api: `Server is live` });
 });
 
 server.use('/api/auth', logger, authRouter);
